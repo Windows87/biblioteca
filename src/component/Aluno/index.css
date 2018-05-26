@@ -1,0 +1,17 @@
+.nomeDoAluno {
+  font-weight: bold;
+  width: 300px;
+}
+
+@media only screen and (max-width: 768px) {
+  .nomeDoAluno {
+    font-weight: bold;
+    width: 150px;
+  }
+}
+
+.dadosDoAluno {
+	width: 300px;
+	display: flex;
+	justify-content: space-between;
+}

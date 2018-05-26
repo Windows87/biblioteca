@@ -1,0 +1,15 @@
+.nomeDoLivro, .nomeDoAluno {
+  font-weight: bold;
+  width: 150px;
+  padding: 2px;
+}
+
+
+.emprestimoAtrasado {
+  color: red;
+}
+
+span {
+  text-align: center;
+  padding: 2px;
+}

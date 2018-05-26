@@ -1,0 +1,5 @@
+.listaContainer {
+  width: calc(100% - 16px);
+  padding: 16px;
+  overflow: overlay;
+}

@@ -1,0 +1,16 @@
+.rowContainerClass {
+  width: calc(100% - 16px);
+  min-height: 30px;
+  padding: 8px;
+  font-size: 17px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 0px 0px;
+}
+
+.divSeparada{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

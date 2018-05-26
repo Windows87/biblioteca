@@ -1,0 +1,20 @@
+.procurarContainer {
+  width: calc(100% - 4px);
+  padding-left: 2px;
+  padding-right: 2px;
+  height: fit-content;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 0px 0px;
+}
+
+.inputParaProcurar {
+  width: calc(100% - 16px);
+  height: 50px;
+  font-size: 18px;
+  color: gray;
+  border: none;
+  padding: 8px;
+}
+
+input:focus {
+  outline: none;
+}

@@ -1,0 +1,10 @@
+select {
+  width: calc(70% + 16px);
+  max-width: 516px;
+  height: 40px;
+  font-size: 19px;
+  margin-bottom: 4px;
+  background-color: #f0f0f0;
+  color: #313131;
+  border: 0;
+}

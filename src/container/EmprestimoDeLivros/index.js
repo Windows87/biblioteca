@@ -70,6 +70,8 @@ export default class EmprestimoDeLivros extends Component {
 
     this.bancoDeDados.atualizarLivros('disponiveis', quantidadeDisponivelDoLivro, nomeDoLivro);
     this.bancoDeDados.atualizarLivros('emprestados', quantidadeEmprestadaDoLivro, nomeDoLivro);
+
+    this.pegarTodosDadosDosLivros();
   }
 
   aoSelecionarOAluno(nomeDoAlunoSelecionado){

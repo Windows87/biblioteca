@@ -11,6 +11,7 @@ export default class CadastroDeLivros extends Component {
   }
 
   cadastrarLivro(dadosDoLivro){
+    dadosDoLivro.emprestados = 0;
     this.bancoDeDados.adicionarLivro(dadosDoLivro);
   }
 
@@ -19,7 +20,6 @@ export default class CadastroDeLivros extends Component {
       <Cadastro aoCadastrar={this.cadastrarLivro}>
         <input type="text" placeholder="Nome" name="nome" />
         <input type="text" placeholder="Livros Disponíveis" name="disponiveis" />
-        <input type="text" placeholder="Livros Emprestados" name="emprestados" />
       </Cadastro>
   	);
   }

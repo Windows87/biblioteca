@@ -23,3 +23,8 @@ body {
 button:focus, select:focus {
   outline: none;
 }
+
+@font-face {
+    font-family: Roboto;
+    src: url(Roboto-Regular.ttf);
+}

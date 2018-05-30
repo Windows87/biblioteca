@@ -16,6 +16,20 @@ export default class Cadastro extends Component {
   	}
   }	
 
+  estaFazendoUmCadastroVazio(textos){
+    let nomesDoObjeto = Object.getOwnPropertyNames(textos);
+    let quantidadeDeTextos = nomesDoObjeto.length;
+
+    for(let contador = 0; contador < quantidadeDeTextos; contador++){
+      let nomeDoObjetoAtual = nomesDoObjeto[contador];
+      if(!textos[nomeDoObjetoAtual]){
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   resetarTodosOsTextos(){
     for(let contadorDeInputs = 0; contadorDeInputs < this.props.children.length; contadorDeInputs++){
       let input = this.props.children[contadorDeInputs].props.name;
@@ -27,7 +41,13 @@ export default class Cadastro extends Component {
 
   onSubmit(evento){
   	evento.preventDefault();
-  	this.props.aoCadastrar(this.state.textosDosInputs);
+
+    if(this.estaFazendoUmCadastroVazio(this.state.textosDosInputs)){
+      alert('Você está fazendo um Cadastro vazio');
+      return;
+    }
+
+    this.props.aoCadastrar(this.state.textosDosInputs);
     this.resetarTodosOsTextos();
   }
 

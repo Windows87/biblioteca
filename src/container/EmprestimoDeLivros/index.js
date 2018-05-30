@@ -111,6 +111,20 @@ export default class EmprestimoDeLivros extends Component {
     return novoId;
   }
 
+  estaFazendoUmCadastroVazio(textos){
+    let nomesDoObjeto = Object.getOwnPropertyNames(textos);
+    let quantidadeDeTextos = nomesDoObjeto.length;
+
+    for(let contador = 0; contador < quantidadeDeTextos; contador++){
+      let nomeDoObjetoAtual = nomesDoObjeto[contador];
+      if(!textos[nomeDoObjetoAtual]){
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   resetarValorDosInputs(){
   	this.setState({
   	  nomeDoAlunoSelecionado: '',
@@ -127,6 +141,17 @@ export default class EmprestimoDeLivros extends Component {
     let mesDeEntrega = dataDeEntrega.getMonth() + 1;
     let id = this.obterOId();
 
+
+    if(this.estaFazendoUmCadastroVazio({
+      nomeDoAlunoSelecionado: this.state.nomeDoAlunoSelecionado,
+      nomeDoLivroSelecionado: this.state.nomeDoLivroSelecionado,
+      codigoDoLivro: this.state.codigoDoLivro,
+      diasEmprestados: this.state.diasEmprestados
+    })){
+      alert('Você está fazendo um cadastro Vazio');
+      return;
+    }
+      
   	this.bancoDeDados.adicionarLivroEmprestado({
       id: id,
   	  nomeDoLivro: this.state.nomeDoLivroSelecionado,

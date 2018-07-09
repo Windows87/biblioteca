@@ -5,13 +5,14 @@ import BancoDeDados from '../../class/BancoDeDados';
 import './index.css';
 
 export default class Aluno extends Component {
-  bancoDeDados = new BancoDeDados;
+  bancoDeDados = new BancoDeDados();
 
   constructor(props){
     super(props);
 
     this.atualizarSerie = this.atualizarSerie.bind(this);
     this.atualizarTurma = this.atualizarTurma.bind(this);
+    this.removerAluno = this.removerAluno.bind(this);
   }
 
   atualizarSerie(valorNovo, alunoParaAtualizar) {
@@ -24,6 +25,11 @@ export default class Aluno extends Component {
 
   atualizarCodigo(valorNovo, alunoParaAtualizar) {
     this.bancoDeDados.atualizarAlunos('codigo', valorNovo, alunoParaAtualizar);
+  }
+
+  removerAluno(){
+    this.bancoDeDados.removerAluno(this.props.nome);
+    this.props.aoRemover();
   }
 
   render(){
@@ -39,6 +45,8 @@ export default class Aluno extends Component {
 
       	  <SpanComInput valorDoSpan={this.props.codigo} aoAtualizar={(valorNovo) => this.atualizarCodigo(valorNovo, this.props.nome)} />
       	</div>
+
+        <span onClick={this.removerAluno}>Remover</span>
       </RowContainer>
     );  
   }

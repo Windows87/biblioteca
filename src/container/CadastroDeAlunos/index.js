@@ -3,7 +3,7 @@ import Cadastro from '../../component/Cadastro';
 import BancoDeDados from '../../class/BancoDeDados';
 
 export default class CadastroDeAlunos extends Component {
-  bancoDeDados = new BancoDeDados;
+  bancoDeDados = new BancoDeDados();
 
   constructor(props){
     super(props);
@@ -11,6 +11,11 @@ export default class CadastroDeAlunos extends Component {
   }
 
   cadastrarAluno(dadosDoAluno){
+    if(this.bancoDeDados.oAlunoJaFoiCadastrado(dadosDoAluno.nome)){
+      alert('O Aluno já foi Cadastrado');
+      return;
+    }
+
     this.bancoDeDados.adicionarAluno(dadosDoAluno);
   }
 

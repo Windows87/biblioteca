@@ -48,23 +48,45 @@ export default class Banco {
       return false;
     }
 
-    if(dado[emQualParteProcurar].toLowerCase().split(termoProcurado.toLowerCase()).length > 1){
+    if(dado[emQualParteProcurar].toString().toLowerCase().split(termoProcurado.toLowerCase()).length > 1){
       return true;
     }    
 
     return false;
   }
 
-  adquirirDadosPorProcura(filho, emQualParteProcurar, termoProcurado){
+  oTermoProcuradoExisteExatamente(dado, emQualParteProcurar, termoProcurado){
+    return dado[emQualParteProcurar].toString().toLowerCase() === termoProcurado.toLowerCase();
+  }
+
+  adquirirDadosPorProcura(filho, emQualParteProcurar, termoProcurado, exatamente){
     let dadosParaRetornar = [];
     let dadosDoFilho = this.adquirirDados(filho);
     dadosDoFilho.map((dado) => {
-      if(this.oTermoProcuradoExiste(dado, emQualParteProcurar, termoProcurado)){
-        dadosParaRetornar.push(dado);
+      if(exatamente) {
+        if(this.oTermoProcuradoExisteExatamente(dado, emQualParteProcurar, termoProcurado)){
+          dadosParaRetornar.push(dado);
+        }        
+      } else {
+        if(this.oTermoProcuradoExiste(dado, emQualParteProcurar, termoProcurado)){
+          dadosParaRetornar.push(dado);
+        }
       }
     });
 
     return dadosParaRetornar;
+  }
+
+  oDadoJaExiste(filho, emQualParteProcurar, termoProcurado){
+    let resposta = false;
+    let dadosDoFilho = this.adquirirDados(filho);
+    dadosDoFilho.map((dado) => {
+      if(this.oTermoProcuradoExisteExatamente(dado, emQualParteProcurar, termoProcurado)){
+        resposta = true;
+      }
+    });
+
+    return resposta;
   }
 
   inserirDados(filho, dadosParaInserir){
@@ -83,7 +105,7 @@ export default class Banco {
     let dadosDoFilho = todosOsDados[filho];
 
     for(let contadorDeDados = 0; contadorDeDados < dadosDoFilho.length; contadorDeDados++){
-      if(dadosDoFilho[contadorDeDados][parteNecessaria] == valorDaParteNecessaria){
+      if(dadosDoFilho[contadorDeDados][parteNecessaria] === valorDaParteNecessaria){
         todosOsDados[filho][contadorDeDados][nomeDaParteParaEditar] = novoValor;
       }
     }
@@ -96,7 +118,7 @@ export default class Banco {
     let dadosDoFilho = todosOsDados[filho];
 
     for(let contadorDeDados = 0; contadorDeDados < dadosDoFilho.length; contadorDeDados++){
-      if(dadosDoFilho[contadorDeDados][parteNecessaria] == valorDaParteNecessaria){
+      if(dadosDoFilho[contadorDeDados][parteNecessaria] === valorDaParteNecessaria){
         todosOsDados[filho].splice(contadorDeDados, 1);
         contadorDeDados = 0;
       }

@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import Cadastro from '../../component/Cadastro';
 import EmprestimoSelect from '../../component/EmprestimoSelect';
 import BancoDeDados from '../../class/BancoDeDados';
 import './index.css';
 
 export default class EmprestimoDeLivros extends Component {
-  bancoDeDados = new BancoDeDados;
+  bancoDeDados = new BancoDeDados();
 
   state = {
   	dadosDosAlunos: [],
@@ -53,7 +52,7 @@ export default class EmprestimoDeLivros extends Component {
     let dadosDoLivroSelecionado = {};
 
     for(let contadorDeLivros = 0; contadorDeLivros < this.state.dadosDosLivros.length; contadorDeLivros++){
-      if(this.state.dadosDosLivros[contadorDeLivros].nome == nomeDoLivro){
+      if(this.state.dadosDosLivros[contadorDeLivros].nome === nomeDoLivro){
         dadosDoLivroSelecionado = this.state.dadosDosLivros[contadorDeLivros];
         break;
       }
@@ -65,8 +64,8 @@ export default class EmprestimoDeLivros extends Component {
   editarQuantidadeDeUmLivro(nomeDoLivro){
     let dadosDoLivroSelecionado = this.obterDadosDeUmLivro(nomeDoLivro);
 
-    let quantidadeDisponivelDoLivro = parseInt(dadosDoLivroSelecionado.disponiveis) - 1;
-    let quantidadeEmprestadaDoLivro = parseInt(dadosDoLivroSelecionado.emprestados) + 1;
+    let quantidadeDisponivelDoLivro = Number(dadosDoLivroSelecionado.disponiveis) - 1;
+    let quantidadeEmprestadaDoLivro = Number(dadosDoLivroSelecionado.emprestados) + 1;
 
     this.bancoDeDados.atualizarLivros('disponiveis', quantidadeDisponivelDoLivro, nomeDoLivro);
     this.bancoDeDados.atualizarLivros('emprestados', quantidadeEmprestadaDoLivro, nomeDoLivro);
@@ -83,12 +82,12 @@ export default class EmprestimoDeLivros extends Component {
   }
 
   mudarDiasEmprestados(evento){
-  	if(!parseInt(evento.target.value)){
+  	if(!Number(evento.target.value)){
   	  this.setState({ diasEmprestados: 0 });
   	  return;
   	}
 
-  	let diasEmprestados = parseInt(evento.target.value);
+  	let diasEmprestados = Number(evento.target.value);
   	this.setState({ diasEmprestados });  	
   }
 
@@ -105,7 +104,7 @@ export default class EmprestimoDeLivros extends Component {
       return 0;
     }
 
-    let ultimoId = parseInt(todosOsLivrosEmprestados[quantosLivrosEstaoEmprestados - 1].id);
+    let ultimoId = Number(todosOsLivrosEmprestados[quantosLivrosEstaoEmprestados - 1].id);
     let novoId = ++ultimoId;
 
     return novoId;
@@ -135,7 +134,7 @@ export default class EmprestimoDeLivros extends Component {
   }
 
   emprestarLivro(){
-  	let dataAtual = new Date;
+  	let dataAtual = new Date();
   	let dataDeEntrega = new Date(dataAtual.setTime( dataAtual.getTime() + this.state.diasEmprestados * 86400000 ));
     let diaDeEntrega = dataDeEntrega.getDate();
     let mesDeEntrega = dataDeEntrega.getMonth() + 1;
@@ -169,8 +168,8 @@ export default class EmprestimoDeLivros extends Component {
   render(){
     return(
   	  <div className="emprestimoContainer">
-  	  	<EmprestimoSelect dados={this.state.dadosDosAlunos} valorDoSelect={this.state.nomeDoAlunoSelecionado} aoSelecionar={this.aoSelecionarOAluno} />
-  	  	<EmprestimoSelect dados={this.state.dadosDosLivros} valorDoSelect={this.state.nomeDoLivroSelecionado} aoSelecionar={this.aoSelecionarOLivro} />
+  	  	<EmprestimoSelect placeholder="Aluno" dados={this.state.dadosDosAlunos} valorDoSelect={this.state.nomeDoAlunoSelecionado} aoSelecionar={this.aoSelecionarOAluno} />
+  	  	<EmprestimoSelect placeholder="Livro" dados={this.state.dadosDosLivros} valorDoSelect={this.state.nomeDoLivroSelecionado} aoSelecionar={this.aoSelecionarOLivro} />
   	  	<input type="text" placeholder="Código do Livro" value={this.state.codigoDoLivro} onChange={this.mudarCodigoDoLivro} />
   	  	<input type="text" placeholder="Dias Emprestados" value={this.state.diasEmprestados} onChange={this.mudarDiasEmprestados} />
   	  	<button onClick={this.emprestarLivro}>Emprestar</button>

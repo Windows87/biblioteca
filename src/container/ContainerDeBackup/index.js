@@ -6,7 +6,7 @@ const fs = window.require('fs');
 const {dialog} = window.require('electron').remote;
 
 export default class ContainerDeBackup extends Component {
-  bancoDeDados = new BancoDeDados;
+  bancoDeDados = new BancoDeDados();
 
   constructor(props){
   	super(props);

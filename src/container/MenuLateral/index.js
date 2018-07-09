@@ -12,7 +12,9 @@ export default class MenuLateral extends Component {
   	  	<BotaoMenuLateral texto={'Cadastrar Aluno'} ir={'cadastrodealunos'} /> 
   	  	<BotaoMenuLateral texto={'Cadastrar Livro'} ir={'cadastrodelivros'} />
   	  	<BotaoMenuLateral texto={'Emprestar Livro'} ir={'emprestimodelivros'} />
-        <BotaoMenuLateral texto={'Backup'} ir={'backup'} /> 
+        <BotaoMenuLateral texto={'Backup'} ir={'backup'} />
+        <BotaoMenuLateral texto={'Importação de Alunos'} ir={'importacao'} />
+        <BotaoMenuLateral texto={'Detalhes'} ir={'detalhes'} />
   	  </div>
   	);
   }

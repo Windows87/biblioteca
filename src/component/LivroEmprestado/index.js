@@ -4,7 +4,7 @@ import BancoDeDados from '../../class/BancoDeDados';
 import './index.css';
 
 export default class LivroEmprestado extends Component {
-  bancoDeDados = new BancoDeDados;
+  bancoDeDados = new BancoDeDados();
 
   constructor(props){
   	super(props);
@@ -26,7 +26,7 @@ export default class LivroEmprestado extends Component {
     let dadosDoLivroSelecionado = {};
 
     for(let contadorDeLivros = 0; contadorDeLivros < dadosDosLivros.length; contadorDeLivros++){
-      if(dadosDosLivros[contadorDeLivros].nome == nomeDoLivro){
+      if(dadosDosLivros[contadorDeLivros].nome === nomeDoLivro){
         dadosDoLivroSelecionado = dadosDosLivros[contadorDeLivros];
         break;
       }
@@ -38,15 +38,15 @@ export default class LivroEmprestado extends Component {
   editarQuantidadeDeUmLivro(nomeDoLivro){
     let dadosDoLivroSelecionado = this.obterDadosDeUmLivro(nomeDoLivro);
 
-    let quantidadeDisponivelDoLivro = parseInt(dadosDoLivroSelecionado.disponiveis) + 1;
-    let quantidadeEmprestadaDoLivro = parseInt(dadosDoLivroSelecionado.emprestados) - 1;
+    let quantidadeDisponivelDoLivro = Number(dadosDoLivroSelecionado.disponiveis) + 1;
+    let quantidadeEmprestadaDoLivro = Number(dadosDoLivroSelecionado.emprestados) - 1;
 
     this.bancoDeDados.atualizarLivros('disponiveis', quantidadeDisponivelDoLivro, nomeDoLivro);
     this.bancoDeDados.atualizarLivros('emprestados', quantidadeEmprestadaDoLivro, nomeDoLivro);
   }
 
   removerEmprestimo(){
-  	this.bancoDeDados.removerEmprestimoDeLivro(parseInt(this.props.id));
+  	this.bancoDeDados.removerEmprestimoDeLivro(Number(this.props.id));
     this.editarQuantidadeDeUmLivro(this.props.nomeDoLivro);
   	this.props.aoRemover();
   }

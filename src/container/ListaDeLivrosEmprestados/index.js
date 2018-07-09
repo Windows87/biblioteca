@@ -7,7 +7,7 @@ import BancoDeDados from '../../class/BancoDeDados';
 
 export default class ListaDeLivros extends Component {
   mesesPorExtenso = ['', 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-  bancoDeDados = new BancoDeDados;
+  bancoDeDados = new BancoDeDados();
 
   state = {
     livrosEmprestados: []
@@ -24,11 +24,28 @@ export default class ListaDeLivros extends Component {
 
   procurarEmprestimos(textoParaProcurar){
     let livrosEmprestados = this.bancoDeDados.obterListaDeEmprestimosPorProcura(textoParaProcurar);
+    
+    for(let contadorDeLivrosEmprestados = 0; contadorDeLivrosEmprestados < livrosEmprestados.length; contadorDeLivrosEmprestados++){
+      let diaDeEntrega = livrosEmprestados[contadorDeLivrosEmprestados].diaDeEntrega;
+      let mesDeEntrega = livrosEmprestados[contadorDeLivrosEmprestados].mesDeEntrega;
+
+      if(this.oEmprestimoEstaAtrasado(diaDeEntrega, mesDeEntrega)){
+        livrosEmprestados[contadorDeLivrosEmprestados].emprestimoAtrasado = true;
+      }
+
+      livrosEmprestados[contadorDeLivrosEmprestados].mesDeEntrega = this.mesesPorExtenso[mesDeEntrega];
+    }
+
+    if(!this.state.livrosEmprestados.length){
+      this.state.livrosEmprestados = livrosEmprestados;
+      return;
+    }
+
     this.setState({ livrosEmprestados });    
   }
 
   oEmprestimoEstaAtrasado(diaDeEntrega, mesDeEntrega){
-    let dataAtual = new Date;
+    let dataAtual = new Date();
     let diaAtual = dataAtual.getDate();
     let mesAtual = dataAtual.getMonth() + 1;
 
@@ -36,7 +53,7 @@ export default class ListaDeLivros extends Component {
       return true;
     }
 
-    if(mesDeEntrega == mesAtual && diaDeEntrega <= diaAtual){
+    if(mesDeEntrega === mesAtual && diaDeEntrega <= diaAtual){
       return true;
     }
 

@@ -6,15 +6,17 @@ import Livro from '../../component/Livro';
 import BancoDeDados from '../../class/BancoDeDados';
 
 export default class ListaDeLivros extends Component {
-  bancoDeDados = new BancoDeDados;
+  bancoDeDados = new BancoDeDados();
   
   state = {
-    livros: []
+    livros: [],
+    textoParaProcurar: ''
   }
 
   constructor(props) {
     super(props);
     this.procurarLivros = this.procurarLivros.bind(this);
+    this.aoRemoverUmLivro = this.aoRemoverUmLivro.bind(this);
 
     this.obterOsLivros();
   }
@@ -26,14 +28,18 @@ export default class ListaDeLivros extends Component {
 
   procurarLivros(textoParaProcurar){
     let livros = this.bancoDeDados.obterListaDeLivrosPorProcura(textoParaProcurar);
-    this.setState({ livros });    
+    this.setState({ livros, textoParaProcurar });    
+  }
+
+  aoRemoverUmLivro() {
+    this.procurarLivros(this.state.textoParaProcurar);
   }
 
   render(){
     return(
       <Lista>
-        <Procurar quandoOTextoMudar={this.procurarLivros} />
-        { this.state.livros.map((livro) => <Livro key={livro.nome} nome={livro.nome} livrosDisponiveis={livro.disponiveis} livrosEmprestados={livro.emprestados} />) }
+        <Procurar quandoOTextoMudar={this.procurarLivros} value={this.textoParaProcurar} />
+        { this.state.livros.map((livro) => <Livro key={livro.nome} nome={livro.nome} prateleira={livro.prateleira} livrosDisponiveis={livro.disponiveis} livrosEmprestados={livro.emprestados} aoRemover={this.aoRemoverUmLivro} />) }
       </Lista>
     );
   }

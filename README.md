@@ -4,7 +4,8 @@ Esse sistema para bibliotecas é feito com ReactJS e Electron.
 
 -------------------------------
 
-Para instalar basta baixar ou clonar o repositório e instalar usando o instalador em instaladores/Setup.exe. (Windows)
+- O Manual apresenta todo o sistema e como usa-lo, para baixa-lo [Clique Aqui](http://www.mediafire.com/file/5y046q0oy382q12/Manual+do+Sistema+da+Biblioteca.pdf).
+- Para baixar o sistema [Clique Aqui](http://www.mediafire.com/file/mma5n5z0a2mea3j/Setup.exe/file).
 
 --------------------------------
 
@@ -16,6 +17,7 @@ Para instalar basta baixar ou clonar o repositório e instalar usando o instalad
    - Código SIMADE
  * Cadastro de Livros
    - Nome
+   - Prateleira
    - Quantidade 
  * Empréstimo de Livros
    - Nome do Aluno (O Aluno deve estar cadastrado)
@@ -23,10 +25,16 @@ Para instalar basta baixar ou clonar o repositório e instalar usando o instalad
    - Código do Livro
    - Dias emprestados
  * Backup
-
+ * Importação de Alunos 
+   - Importar alunos usando tabela do Excel
+ * Detalhes
+   - Número de livros variados
+   - Número de livros totais
+   - Número de livros emprestados
+   - Número de alunos cadastrados
 
 - Ao emprestar um livro, o sistema automaticamente muda a quantidade de livros disponíveis e emprestados
-- É possível mudar as informações dos Alunos (série, turma e código) e Livros (quantidade disponível e emprestada) após o cadastro dos mesmos.
+- É possível mudar as informações dos Alunos (série, turma e código) e Livros (prateleira, quantidade disponível e emprestada) após o cadastro dos mesmos.
 - Você pode fazer um arquivo de backup (Salvar Backup), que resultará em um arquivo JSON, que você pode realizar um backup, assim, voltando todas as informações que estavam naquele arquivo.
 
 -------------------------------
@@ -34,27 +42,27 @@ Para instalar basta baixar ou clonar o repositório e instalar usando o instalad
 ## Screenshots do Sistema: 
 
 #### Lista de Livros e Alunos
- ![Alt Text](https://github.com/Windows87/biblioteca/raw/master/readme-imagens/ps1.jpg)
+ ![Alt Text](https://github.com/Windows87/biblioteca/raw/master/readme-images/ps1.jpg)
 
- ![Alt Text](https://github.com/Windows87/biblioteca/raw/master/readme-imagens/ps2.jpg)
+ ![Alt Text](https://github.com/Windows87/biblioteca/raw/master/readme-images/ps2.jpg)
 
- - Para editar as informações (Turma, Série, Livros Disponíveis, etc.) clique na informação desejada (Exemplo: o livro que antes 6 cópias, recebeu mais 1 cópia, ou seja, eu clico no 6) e mudo a informação dele (ou seja, apago o 6 e coloco 7) e depois dou enter para confirmar e para que as alterações sejam feitas.
- 
 #### Cadastro de Livros e Alunos
  
-  ![Alt Text](https://github.com/Windows87/biblioteca/raw/master/readme-imagens/ps4.jpg)
+  ![Alt Text](https://github.com/Windows87/biblioteca/raw/master/readme-images/ps3.jpg)
   
-  ![Alt Text](https://github.com/Windows87/biblioteca/raw/master/readme-imagens/ps3.jpg)
+  ![Alt Text](https://github.com/Windows87/biblioteca/raw/master/readme-images/ps4.jpg)
   
 #### Empréstimo de Livros
  
-  ![Alt Text](https://github.com/Windows87/biblioteca/raw/master/readme-imagens/ps5.jpg)
-  
-  - Ao emprestar um livro, a quantidade de livros disponíveis diminui e a de emprestados aumenta
+  ![Alt Text](https://github.com/Windows87/biblioteca/raw/master/readme-images/ps5.jpg)
   
 #### Lista de Empréstimos
  
- ![Alt Text](https://github.com/Windows87/biblioteca/raw/master/readme-imagens/ps6.jpg)
+ ![Alt Text](https://github.com/Windows87/biblioteca/raw/master/readme-images/ps6.jpg)
  
  - Se o dia da entrega do livro estiver atrasado ou for igual ao dia de hoje, a data irá ficar em vermelho.
  - Clicando em remover, o empréstimo é removido da lista e a quantidade de livros disponíveis aumenta e a de emprestados diminui
+
+#### Detalhes
+
+ ![Alt Text](https://github.com/Windows87/biblioteca/raw/master/readme-images/ps7.jpg)
